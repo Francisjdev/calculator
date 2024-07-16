@@ -1,5 +1,7 @@
 let num1, num2 
 let operator
+let screen = document.querySelector(".screen");
+const btns = document.querySelectorAll(".btn");
 
 const add = function(a,b){
     console.log(a+b)
@@ -23,3 +25,13 @@ const operate = function (num1, num2, operator){
 
 
 }
+
+
+for (let btn of btns){
+    btn.addEventListener('click',() => {
+ 
+    screen.textContent=btn.textContent;
+});
+}
+ 
+
