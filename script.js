@@ -22,17 +22,27 @@ const operate = function (num1, num2, operator){
     switch (operator){
         case "+": add(num1,num2);
         break;
+        case "-": substract(num1,num2);
+        break;
+        case "*": multiply(num1,num2);
+        break;
+        case "/": divide(num1,num2);
+        break;
     }
 
 
 }
 for (let ope of opes){
     ope.addEventListener('click',() => {
+        if(num1 === undefined){
+            return alert("todo mal Perro")
+        }
         num1 = parseFloat(screen.textContent);
         operator = ope.textContent;
         screen.textContent=ope.textContent;
         console.log(num1)
         console.log(operator);
+        console.log(num2)
 
     })
 }
