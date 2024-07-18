@@ -3,10 +3,14 @@ let operator
 let screen = document.querySelector(".screen");
 const btns = document.querySelectorAll("#btn");
 const opes = document.querySelectorAll("#ope");
+const res  = document.querySelector("#res")
+
+const clear = document.querySelector("#clear");
+const back = document.querySelector("#back");
 screen.textContent = "0";
 const add = function(a,b){
     console.log(a+b)
-    return a+b
+    return screen.textContent= a+b
 }
 const substract =  function(a,b){
     return a-b
@@ -32,11 +36,21 @@ const operate = function (num1, num2, operator){
 
 
 }
+
+back.addEventListener('click',()=>{
+    let holder = screen.textContent.split('')
+    holder.pop();
+    screen.textContent =  holder.join('')
+    console.log(holder);
+})
+clear.addEventListener('click',()=>{
+    screen.textContent = "0"
+})
 for (let ope of opes){
     ope.addEventListener('click',() => {
-        if(num1 === undefined){
+     /*   if(num1 === undefined){
             return alert("todo mal Perro")
-        }
+        }*/
         num1 = parseFloat(screen.textContent);
         operator = ope.textContent;
         screen.textContent=ope.textContent;
@@ -64,4 +78,10 @@ for (let btn of btns){
 });
 }
  
+res.addEventListener("click", ()=>{
+
+        num2= parseFloat(screen.textContent);
+        operate(num1,num2,operator);
+
+} )
 
