@@ -1,5 +1,6 @@
 let num1, num2 
 let operator
+let result
 let screen = document.querySelector(".screen");
 const btns = document.querySelectorAll("#btn");
 const opes = document.querySelectorAll("#ope");
@@ -9,17 +10,20 @@ const clear = document.querySelector("#clear");
 const back = document.querySelector("#back");
 screen.textContent = "0";
 const add = function(a,b){
-    console.log(a+b)
-    return screen.textContent= a+b
+    result = a+b
+    return result
 }
 const substract =  function(a,b){
-    return a-b
+    result = a-b
+    return result
 }
 const multiply =  function(a,b){
-    return a*b
+    result = a*b
+    return result
 }
 const divide =  function(a,b){
-    return a/b
+    result = a/b
+    return result
 }
 
 const operate = function (num1, num2, operator){
@@ -41,23 +45,36 @@ back.addEventListener('click',()=>{
     let holder = screen.textContent.split('')
     holder.pop();
     screen.textContent =  holder.join('')
-    console.log(holder);
 })
 clear.addEventListener('click',()=>{
+    num1=undefined;
+    num2=undefined;
+    operator = undefined;
     screen.textContent = "0"
 })
 for (let ope of opes){
     ope.addEventListener('click',() => {
-     /*   if(num1 === undefined){
-            return alert("todo mal Perro")
-        }*/
-        num1 = parseFloat(screen.textContent);
-        operator = ope.textContent;
-        screen.textContent=ope.textContent;
-        console.log(num1)
-        console.log(operator);
-        console.log(num2)
+        if(operator!== undefined){
+            console.log("entre a esta condicion")
 
+            num2= parseFloat(screen.textContent);
+            console.log(num2)
+
+            operate(num1,num2,operator);
+            console.log(result)
+            num1= result;
+            console.log(num1)
+            operator = ope.textContent;
+            screen.textContent=ope.textContent;
+        } else {
+             console.log("no entre al if ")
+        num1 = parseFloat(screen.textContent);
+        console.log("este es el res que se usa como num1 "+ num1);
+        operator = ope.textContent;
+        console.log("este es el nuevo operator " + operator);
+        screen.textContent=ope.textContent;
+        }
+       
     })
 }
 
@@ -67,7 +84,7 @@ for (let btn of btns){
                 {
                     screen.textContent= screen.textContent+ btn.textContent;
                 }
-            else if (screen.textContent === "0" || screen.textContent ==="+")
+            else if (screen.textContent === "0" || screen.textContent ==="+" || screen.textContent ==="-" || screen.textContent ==="*" || screen.textContent ==="/")
                 {
                     screen.textContent=btn.textContent;
                 }
@@ -82,6 +99,8 @@ res.addEventListener("click", ()=>{
 
         num2= parseFloat(screen.textContent);
         operate(num1,num2,operator);
+        console.log("el resultado es " + result)
+        screen.textContent = result;operator = ope.textContent;
 
 } )
 
